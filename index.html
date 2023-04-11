@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+       body {
+        background-color: black;
+       }
+
+       *{
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: clamp(50px, 4vw, 120px);
+        color: white;
+       }
+    </style>
+    
+    <title>Clock</title>
+</head>
+<body>
+    <div id="root"></div> 
+    <h1></h1>
+
+    <script>
+        const getClock = () => {
+            // get new instance of current date
+            const today = new Date()
+
+            //convert
+            let hour = today.getHours();
+            let minute = today.getMinutes();
+            let seconds = today.getSeconds();
+            let milisecond = today.getMilliseconds();
+
+             // check leading zero
+             hour = checkLeadingZero(hour);
+            seconds = checkLeadingZero(seconds);
+            minute = checkLeadingZero(minute);
+
+            //assemble
+            let currentTime = `${hour} : ${minute} :${seconds} : ${milisecond}`;
+
+           
+
+            //render
+            document.querySelector("#root").innerHTML = currentTime;
+
+            setTimeout( getClock, 100)
+        }
+
+        const checkLeadingZero = (paramTime) => {
+            paramTime < 10
+            ? paramTime = "0"+paramTime
+            : null 
+
+            return paramTime
+        }
+        
+       getClock()
+        
+       
+    </script>
+    
+    
+</body>
+</html>
